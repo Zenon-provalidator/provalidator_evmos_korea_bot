@@ -25,7 +25,7 @@ function getMessage(coin){
 		
 		if(coin == 'evmos'){
 			let evmosInfo = getEvmosInfo()
-			msg = `☄️ <b>이브모스 ($EVMOS)</b>\nㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n\n`
+			msg = `☄️ <b>Evmos ($EVMOS)</b>\nㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n\n`
 			if( wdate <  cdate) {
 				price = getPrice()
 				priceUsd = price[0].toFixed(2)
