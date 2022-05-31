@@ -113,7 +113,7 @@ function getProposal(num){
 	let prvTokens = (prvDetail.tokens/ 1000000000000000000).toFixed(0)
 	let msg = `<b>🔱 이브모스 ($EVMOS) 거버넌스</b>\n` 
 	msg += `ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n\n`
-	msg += `<b>🗳️프로포절</b>\n\n`
+	msg += `<b>☄️프로포절</b>\n\n`
 	msg += `#${num} ${title}\n\n`
 	msg += `📌<a href='https://www.mintscan.io/evmos/proposals/${num}'>https://www.mintscan.io/evmos/proposals/${num}</a>\n\n`
 	msg += `🔍다른 프로포절 검색은 [/proposal 숫자]\n\n`
