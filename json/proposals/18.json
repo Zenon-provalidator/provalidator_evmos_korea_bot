@@ -1,0 +1,1 @@
+{"id":18,"title":"Register ERC20 for G-USDT","desc":"This proposal creates and registers an ERC20 representation for G-USDT, the Tether USD stablecoin bridged from Ethereum mainnet over Gravity Bridge. G-USDT has been bridged over IBC channel channel-8.","status":"PROPOSAL_STATUS_PASSED"}

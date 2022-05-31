@@ -1,0 +1,1 @@
+{"id":20,"title":"Register ERC20 for G-WETH","desc":"This proposal creates and registers an ERC20 representation for G-WETH, Wrapped Ether bridged from Ethereum mainnet over Gravity Bridge. G-WETH has been bridged over IBC channel channel-8.","status":"PROPOSAL_STATUS_PASSED"}

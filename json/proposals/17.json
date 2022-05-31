@@ -1,0 +1,1 @@
+{"id":17,"title":"Register ERC20 for G-USDC","desc":"This proposal creates and registers an ERC20 representation for G-USDC, the USD Coin stablecoin bridged from Ethereum mainnet over Gravity Bridge. G-USDC has been bridged over IBC channel channel-8.","status":"PROPOSAL_STATUS_PASSED"}

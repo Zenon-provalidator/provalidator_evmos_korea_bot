@@ -1,0 +1,31 @@
+{
+  "name": "provalidator_evmos_korea_bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "provalidator_evmos_korea_bot.js",
+  "dependencies": {
+    "cron": "^1.8.2",
+    "dotenv": "^8.2.0",
+    "fs": "0.0.1-security",
+    "log4js": "^6.3.0",
+    "numeral": "^2.0.6",
+    "sync-fetch": "^0.3.0",
+    "telegraf": "^3.27.1",
+    "telegraf-command-parts": "^1.0.3"
+  },
+  "scripts": {
+    "restart": "kill -9 `ps -ef | grep 'node provalidator_evmos_korea_bot.js' | grep -v grep | awk '{print $2}'` ; node provalidator_evmos_korea_bot.js >> ./provalidator_evmos_korea_bot.log 2>&1 &",
+    "start": "node provalidator_evmos_korea_bot.js >> ./provalidator_evmos_korea_bot.log 2>&1 &",
+    "stop": "kill -9 `ps -ef | grep 'node provalidator_evmos_korea_bot.js' | grep -v grep | awk '{print $2}'`"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zenon-provalidator/provalidator_evmos_korea_bot.git"
+  },
+  "author": "zenon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zenon-provalidator/provalidator_evmos_korea_bot/issues"
+  },
+  "homepage": "https://provalidator.com"
+}
