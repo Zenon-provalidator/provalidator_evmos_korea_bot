@@ -25,7 +25,7 @@ function getMessage(coin){
 		
 		if(coin == 'evmos'){
 			let evmosInfo = getEvmosInfo()
-			msg = `🔱 <b>이브모스 ($EVMOS)</b>\nㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n\n`
+			msg = `☄️ <b>이브모스 ($EVMOS)</b>\nㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n\n`
 			if( wdate <  cdate) {
 				price = getPrice()
 				priceUsd = price[0].toFixed(2)
@@ -111,9 +111,9 @@ function getProposal(num){
 	let prvRank = prvDetail.rank
 	let prvRate = (prvDetail.rate * 100)
 	let prvTokens = (prvDetail.tokens/ 1000000000000000000).toFixed(0)
-	let msg = `<b>🔱 이브모스 ($EVMOS) 거버넌스</b>\n` 
+	let msg = `<b>☄️ Evmos ($EVMOS) 거버넌스</b>\n` 
 	msg += `ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n\n`
-	msg += `<b>☄️프로포절</b>\n\n`
+	msg += `<b>🗳️프로포절</b>\n\n`
 	msg += `#${num} ${title}\n\n`
 	msg += `📌<a href='https://www.mintscan.io/evmos/proposals/${num}'>https://www.mintscan.io/evmos/proposals/${num}</a>\n\n`
 	msg += `🔍다른 프로포절 검색은 [/proposal 숫자]\n\n`

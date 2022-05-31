@@ -83,7 +83,7 @@ const botJob = new CronJob(`*/60 * * * * *`, async function () {
 		let getProposal = func.getProposalFromServer(callProposalNum)
 		
 		if(typeof getProposal === "object"){
-			let msg = `<b>☄️ 이브모스 ($EVMOS) 거버넌스</b>\n` 
+			let msg = `<b>☄️ Evmos ($EVMOS) 거버넌스</b>\n` 
 			msg += `ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n\n`
 			msg += `<b>🗳️New 프로포절</b>\n\n`
 			msg += `#${callProposalNum} ${getProposal.title}\n\n`
