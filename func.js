@@ -28,6 +28,7 @@ function getMessage(coin){
 			msg = `☄️ <b>Evmos ($EVMOS)</b>\nㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n\n`
 			if( wdate <  cdate) {
 				price = getPrice()
+				apr = getAPR()
 				priceUsd = price[0].toFixed(2)
 				priceKrw = price[1].toFixed(0)
 				maxTokens = (evmosInfo.max_tokens/ 1000000000000000000).toFixed(0)
@@ -42,7 +43,8 @@ function getMessage(coin){
 				
 				let wJson = {
 					"priceUsd" : priceUsd,
-					"priceKrw" : priceKrw,	
+					"priceKrw" : priceKrw,
+					"apr" : apr,	
 					"maxTokens" : maxTokens,
 					"stakedTokens" : stakedTokens,
 					"stakedPercent" : stakedPercent,
@@ -57,6 +59,7 @@ function getMessage(coin){
 			}else{
 				priceUsd = rJson.priceUsd
 				priceKrw = rJson.priceKrw
+				apr = rJson.apr
 				maxTokens = rJson.maxTokens
 				stakedTokens = rJson.stakedTokens
 				stakedPercent = rJson.stakedPercent
@@ -72,6 +75,7 @@ function getMessage(coin){
 			msg += `<b>프로밸리와 $EVMOS 스테이킹 하세요❤️</b>\n\n`
 			msg += `<b>🏆검증인 순위: #${prvRank}</b>\n\n`
 			msg += `<b>🔖수수료: ${prvRate}%</b>\n\n`
+			msg += `<b>📈연간이율(APR): ${apr}%</b>\n\n`
 			msg += `<b>🤝위임량: ${numberWithCommas(prvTokens)}</b>\n\n`
 			msg += `ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n`
 			msg += `<b>프로밸리(<a href='https://provalidator.com' target='_blank'>Provalidator</a>) 검증인 만듦</b>\n`
@@ -187,7 +191,12 @@ function getLatestProposalNum(){
 function numberWithCommas(x) {
 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 }
-
+function getAPR(){
+	let aprTxt = fetch('https://evmos.api.explorers.guru/api/bank/apr').text()
+	let apr = (aprTxt *100).toFixed(2)
+	//console.log(apr)
+	return apr	
+}
 function getPrice(){
 	let json = fetch('https://api.coingecko.com/api/v3/simple/price?ids=evmos&vs_currencies=usd,krw').json()
 	return [json.evmos.usd,json.evmos.krw]
