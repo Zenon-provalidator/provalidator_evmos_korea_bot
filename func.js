@@ -238,12 +238,12 @@ function bak_getEvmosInfo(){
 	return returnArr	
 }
 function getProvalidatorDetail(){
-	let json = fetch(process.env.EVMOS_API_URL+"/staking/validators").json()
+	let json = fetch(process.env.EVMOS_API_URL2+"/validators").json()
 	let obj = {};
 	for(var i in json){
 		if(process.env.PROVALIDATOR_OPERATER_ADDRESS === json[i].operator_address){			
 			obj.rank = json[i].rank
-			obj.rate = json[i].rate
+			obj.rate = json[i].commission
 			obj.tokens = json[i].tokens
 		}
 	}
