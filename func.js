@@ -192,8 +192,26 @@ function getPrice(){
 	let json = fetch('https://api.coingecko.com/api/v3/simple/price?ids=evmos&vs_currencies=usd,krw').json()
 	return [json.evmos.usd,json.evmos.krw]
 }
-
 function getEvmosInfo(){
+	//https://lcd-evmos.keplr.app/bank/total/aevmos
+	//https://lcd-evmos.keplr.app/staking/pool
+	let json = fetch(process.env.EVMOS_API_URL+"/bank/total/aevmos").json()
+	let maxTokens =json.result.amount
+	
+	let json2 = fetch(process.env.EVMOS_API_URL+"/staking/pool").json()
+	let bondedTokens = json2.result.bonded_tokens
+	let notBondedTokens = json2.result.not_bonded_tokens
+	
+	let returnArr = { 
+		'bonded_tokens' : bondedTokens,
+		'not_bonded_tokens' : notBondedTokens,
+		'max_tokens' : maxTokens
+	}
+	
+	return returnArr	
+}
+
+function bak_getEvmosInfo(){
 	let json = fetch(process.env.EVMOS_API_URL+"/status").json()
 	//console.log(json)
 	let returnArr = { 
