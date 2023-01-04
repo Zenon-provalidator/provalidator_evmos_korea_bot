@@ -212,8 +212,8 @@ function getEvmosInfo(){
 //	let notBondedTokens = json2.result.not_bonded_tokens
 	
 	let json = fetch(process.env.EVMOS_API_URL+"/v1/chain").json()
-	let maxTokens =json.result.supply
-	let bondedTokens = json.result.bondedTokens
+	let maxTokens =json.supply
+	let bondedTokens = json.bondedTokens
 	let notBondedTokens = maxTokens-bondedTokens
 	
 	let returnArr = { 
