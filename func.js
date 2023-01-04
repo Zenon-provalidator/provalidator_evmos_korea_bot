@@ -22,13 +22,13 @@ function getMessage(coin){
 		let rJson = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file)) : ''
 		var wdate = fs.existsSync(file) ? parseInt(rJson.wdate) + (60 * 1000) : 0
 		var cdate = parseInt(new Date().getTime())
-		
+
 		if(coin == 'evmos'){
 			let evmosInfo = getEvmosInfo()
 			msg = `☄️ <b>Evmos ($EVMOS)</b>\nㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n\n`
 			if( wdate <  cdate) {
 				price = getPrice()
-				apr = getAPR()
+				apr = evmosInfo.apr == null ? 125.23 : evmosInfo.apr		
 				priceUsd = price[0].toFixed(2)
 				priceKrw = price[1].toFixed(0)
 				maxTokens = (evmosInfo.max_tokens/ 1000000000000000000).toFixed(0)
@@ -38,7 +38,7 @@ function getMessage(coin){
 				notStakedPercent = (notStakedTokens / maxTokens * 100).toFixed(0)
 				prvDetail = getProvalidatorDetail()//get provalidator detail info
 				prvRank = prvDetail.rank
-				prvRate = (prvDetail.rate * 100)
+				prvRate = prvDetail.rate//(prvDetail.rate * 100)
 				prvTokens = (prvDetail.tokens/ 1000000000000000000).toFixed(0)
 				
 				let wJson = {
@@ -195,6 +195,7 @@ function getAPR(){
 	let aprTxt = fetch('https://evmos.api.explorers.guru/api/bank/apr').text()
 	let apr = (aprTxt *100).toFixed(2)
 	//console.log(apr)
+	apr = 125.23
 	return apr	
 }
 function getPrice(){
@@ -211,17 +212,17 @@ function getEvmosInfo(){
 //	let bondedTokens = json2.result.bonded_tokens
 //	let notBondedTokens = json2.result.not_bonded_tokens
 	
-	let json = fetch(process.env.EVMOS_API_URL+"/v1/chain").json()
+	let json = fetch(process.env.EVMOS_API_URL+"/v1/chain").json()	
 	let maxTokens =json.supply
 	let bondedTokens = json.bondedTokens
 	let notBondedTokens = maxTokens-bondedTokens
-	
+	let apr = 125.23//json.apr
 	let returnArr = { 
-		'bonded_tokens' : json.result.supply,
+		'bonded_tokens' : bondedTokens,
 		'not_bonded_tokens' : notBondedTokens,
-		'max_tokens' : maxTokens
+		'max_tokens' : maxTokens,
+		'apr' : apr
 	}
-	
 	return returnArr	
 }
 
@@ -243,10 +244,10 @@ function bak_getEvmosInfo(){
 	return returnArr	
 }
 function getProvalidatorDetail(){
-	let json = fetch(process.env.EVMOS_API_URL2+"/validators").json()
+	let json = fetch(process.env.EVMOS_API_URL+"/v1/validators").json()
 	let obj = {};
 	for(var i in json){
-		if(process.env.PROVALIDATOR_OPERATER_ADDRESS === json[i].operator_address){			
+		if(process.env.PROVALIDATOR_OPERATER_ADDRESS === json[i].operatorAddress){			
 			obj.rank = json[i].rank
 			obj.rate = json[i].commission
 			obj.tokens = json[i].tokens

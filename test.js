@@ -3,10 +3,11 @@ const fs = require('fs')
 const CronJob = require('cron').CronJob
 
 //console.log(func.getProvalidatorDetail())
-//console.log(func.getMessage('evmos'))
-console.log(func.getProposal(57))
+//
+//console.log(func.getProposal(57))
+console.log(func.getMessage('evmos'))
 
-
+//console.log(func.getProvalidatorDetail())
 
  
 

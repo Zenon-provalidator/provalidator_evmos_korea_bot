@@ -101,4 +101,4 @@ const botJob = new CronJob(`*/60 * * * * *`, async function () {
 		logger.error(`latestProposal is 0`)
 	}
 	
-}).start()
+})//.start()
