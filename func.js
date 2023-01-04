@@ -204,15 +204,20 @@ function getPrice(){
 function getEvmosInfo(){
 	//https://lcd-evmos.keplr.app/bank/total/aevmos
 	//https://lcd-evmos.keplr.app/staking/pool
-	let json = fetch(process.env.EVMOS_API_URL+"/bank/total/aevmos").json()
-	let maxTokens =json.result.amount
+//	let json = fetch(process.env.EVMOS_API_URL+"/bank/total/aevmos").json()
+//	let maxTokens =json.result.amount
+//	
+//	let json2 = fetch(process.env.EVMOS_API_URL+"/staking/pool").json()
+//	let bondedTokens = json2.result.bonded_tokens
+//	let notBondedTokens = json2.result.not_bonded_tokens
 	
-	let json2 = fetch(process.env.EVMOS_API_URL+"/staking/pool").json()
-	let bondedTokens = json2.result.bonded_tokens
-	let notBondedTokens = json2.result.not_bonded_tokens
+	let json = fetch(process.env.EVMOS_API_URL+"/v1/chain").json()
+	let maxTokens =json.result.supply
+	let bondedTokens = json.result.bondedTokens
+	let notBondedTokens = maxTokens-bondedTokens
 	
 	let returnArr = { 
-		'bonded_tokens' : bondedTokens,
+		'bonded_tokens' : json.result.supply,
 		'not_bonded_tokens' : notBondedTokens,
 		'max_tokens' : maxTokens
 	}
