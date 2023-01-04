@@ -6,7 +6,7 @@ const CronJob = require('cron').CronJob
 //
 //console.log(func.getProposal(57))
 console.log(func.getMessage('evmos'))
-
+//console.log(func.getApr())
 //console.log(func.getProvalidatorDetail())
 
  

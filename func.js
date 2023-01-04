@@ -28,7 +28,7 @@ function getMessage(coin){
 			msg = `☄️ <b>Evmos ($EVMOS)</b>\nㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n\n`
 			if( wdate <  cdate) {
 				price = getPrice()
-				apr = evmosInfo.apr == null ? 125.23 : evmosInfo.apr		
+				apr = evmosInfo.apr == null ? getApr() : evmosInfo.apr
 				priceUsd = price[0].toFixed(2)
 				priceKrw = price[1].toFixed(0)
 				maxTokens = (evmosInfo.max_tokens/ 1000000000000000000).toFixed(0)
@@ -191,12 +191,16 @@ function getLatestProposalNum(){
 function numberWithCommas(x) {
 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 }
-function getAPR(){
-	let aprTxt = fetch('https://evmos.api.explorers.guru/api/bank/apr').text()
-	let apr = (aprTxt *100).toFixed(2)
-	//console.log(apr)
-	apr = 125.23
-	return apr	
+function getApr(){
+	
+	let json = fetch('https://7nkwv3z5t1.execute-api.us-east-1.amazonaws.com/prod/listData?type=listPools&status=Bonded&key=2mwTEDr9zXJH323M&token=1672802545&app=EVMOS').json()
+	return json.coinStat.currentRewardRate.toFixed(0)
+	//weeklyCompoundingApy
+//	let aprTxt = fetch('https://evmos.api.explorers.guru/api/bank/apr').text()
+//	let apr = (aprTxt *100).toFixed(2)
+//	//console.log(apr)
+//	apr = 125.23
+//	return apr	
 }
 function getPrice(){
 	let json = fetch('https://api.coingecko.com/api/v3/simple/price?ids=evmos&vs_currencies=usd,krw').json()
@@ -216,7 +220,7 @@ function getEvmosInfo(){
 	let maxTokens =json.supply
 	let bondedTokens = json.bondedTokens
 	let notBondedTokens = maxTokens-bondedTokens
-	let apr = 125.23//json.apr
+	let apr = json.apr
 	let returnArr = { 
 		'bonded_tokens' : bondedTokens,
 		'not_bonded_tokens' : notBondedTokens,
@@ -262,5 +266,6 @@ module.exports = {
 	getProposal : getProposal,
 	getProposalFromServer : getProposalFromServer,
 	getProposalFromLocal : getProposalFromLocal,
-	getLatestProposalNum : getLatestProposalNum
+	getLatestProposalNum : getLatestProposalNum,
+	getApr : getApr
 }
