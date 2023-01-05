@@ -28,8 +28,9 @@ function getMessage(coin){
 			msg = `☄️ <b>Evmos ($EVMOS)</b>\nㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n\n`
 			if( wdate <  cdate) {
 				price = getPrice()
-				//apr = evmosInfo.apr == null ? getApr() : evmosInfo.apr
-				apr = 116
+//				apr = evmosInfo.apr == null ? getApr() : evmosInfo.apr
+//				apr = 116
+				apr = evmosInfo.apr == null ? 116 : evmosInfo.apr
 				priceUsd = price[0].toFixed(2)
 				priceKrw = price[1].toFixed(0)
 				maxTokens = (evmosInfo.max_tokens/ 1000000000000000000).toFixed(0)
