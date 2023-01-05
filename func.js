@@ -29,7 +29,7 @@ function getMessage(coin){
 			if( wdate <  cdate) {
 				price = getPrice()
 				//apr = evmosInfo.apr == null ? getApr() : evmosInfo.apr
-				apr = getApr()
+				apr = 116
 				priceUsd = price[0].toFixed(2)
 				priceKrw = price[1].toFixed(0)
 				maxTokens = (evmosInfo.max_tokens/ 1000000000000000000).toFixed(0)
